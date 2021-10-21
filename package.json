@@ -1,9 +1,9 @@
 {
-  "name": "afg-refuge",
+  "name": "mbox-hana",
   "version": "0.0.1",
-  "description": "Gmail parser to SAP HANA insertion",
+  "description": "mbox file parser to SAP HANA utility",
   "author": "Mike Echevarria <michael.echevarria@sapns2.com>",
-  "repository": "https://bitbucket.ns2labs.com/users/i518948/repos/afg-refugee",
+  "repository": "https://bitbucket.ns2labs.com/users/i518948/repos/mbox-hana",
   "license": "MIT",
   "scripts": {
     "start": "node main.js"
@@ -13,11 +13,15 @@
     "npm": "~6.14.0"
   },
   "dependencies": {
-    "googleapis": "^88.2.0"
+    "cli-progress": "^3.9.1",
+    "mailparser": "^3.4.0",
+    "node-mbox": "^1.0.0"
   },
   "devDependencies": {
     "eslint": "^8.0.1",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.25.2"
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-prettier": "^4.0.0"
   }
 }

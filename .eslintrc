@@ -4,12 +4,13 @@
         "es6": true
     },
     "extends": [
-        "airbnb-base"
+        "airbnb",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier"
     ],
     "rules": {
-        "indent": ["error", 2],
-        "comma-dangle": ["error", "never"],
-        "no-console": ["error", {"allow": ["info", "warn", "error"]}],
-        "max-len": ["warn", 180]
+        "prettier/prettier": ["error"]
     }
 }
