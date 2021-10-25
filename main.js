@@ -1,6 +1,6 @@
 const Mbox = require('node-mbox');
 const fs = require('fs');
-const stream = fs.createReadStream('Inbox.mbox');
+const stream = fs.createReadStream('export.mbox');
 const cliProgress = require('cli-progress');
 const mbox = new Mbox(stream);
 const simpleParser = require('mailparser').simpleParser;

@@ -1,0 +1,25 @@
+_schema-version: "3.3"
+ID: mbox-hana
+version: 0.0.1
+modules:
+- name: hdi-hana-deployer
+  type: com.sap.xs.hdi
+  path: db
+  properties:
+    OPTIMIZE_MEMORY: true
+  requires:
+  - name: mbox-hdi-hana
+  parameters:
+    disk-quota: 1024M
+    memory: 128M
+resources:
+- name: mbox-hdi-hana
+  type: com.sap.xs.hdi-container
+  parameters:
+    service-name: mbox-hdi-hana
+    config:
+      schema: MBOX_SCHEMA
+      makeUniqueName: false
+    service: hana
+  properties:
+    hdi-container-name: ${service-name}
