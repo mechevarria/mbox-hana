@@ -1,3 +1,4 @@
 node_modules
 *.mbox
 sample.json
+config.json

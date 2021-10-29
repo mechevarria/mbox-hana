@@ -4,6 +4,7 @@ const stream = fs.createReadStream('export.mbox');
 const cliProgress = require('cli-progress');
 const mbox = new Mbox(stream);
 const simpleParser = require('mailparser').simpleParser;
+const hana = require('@sap/hana-client');
 
 const bar = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
 
@@ -39,4 +40,30 @@ mbox.on('end', () => {
   // });
 
   // bar.stop();
+  const configFile = fs.readFileSync('config.json');
+  const config = JSON.parse(configFile);
+  let conn = hana.createConnection();
+
+  conn.connect(config, (err) => {
+    if (err) {
+      console.error('Connection error', err);
+      throw err;
+    }
+
+    const sql = `
+    SELECT SESSION_USER, CURRENT_SCHEMA 
+		FROM "DUMMY"
+    `;
+
+    conn.exec(sql, (err, result) => {
+      if (err) {
+        console.error('SQL error', err);
+        throw err;
+      }
+
+      console.log(JSON.stringify(result));
+
+      conn.disconnect();
+    })
+  });
 });
