@@ -16,6 +16,6 @@ technical configuration {
         async
         language detection('en')
         fuzzy search index on
-        configuration 'EXTRACTION_CORE'
+        configuration 'PUBLIC_SECTOR_EMAIL'
         text analysis on;
 };
