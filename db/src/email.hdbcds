@@ -1,10 +1,11 @@
 entity EMAIL {
     key EMAIL_ID     : Integer generated always as identity (start with 1 increment by 1);
         EMAIL_DATE   : LocalDate        not null;
-        EVENT_TYPE   : hana.VARCHAR(50) not null;
         MESSAGE_ID   : String(200)      not null;
-        FROM_ADRESS  : String(100);
+        FROM_ADDRESS  : String(100);
         TO_ADDRESS   : String(100);
+        CC_ADDRESS   : String(100);
+        BCC_ADDRESS  : String(100);
         SUBJECT      : String(200);
         TEXT         : LargeString;
         TEXT_AS_HTML : LargeString;

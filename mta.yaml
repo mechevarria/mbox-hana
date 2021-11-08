@@ -18,7 +18,6 @@ resources:
   parameters:
     service-name: mbox-hdi-hana
     config:
-      schema: MBOX_SCHEMA
       makeUniqueName: false
     service: hana
   properties:
