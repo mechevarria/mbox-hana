@@ -4,7 +4,7 @@ entity EMAIL {
         MESSAGE_ID   : String(200)      not null;
         FROM_ADDRESS  : String(100);
         TO_ADDRESS   : String(100);
-        CC_ADDRESS   : String(100);
+        CC_ADDRESS   : LargeString;
         BCC_ADDRESS  : String(100);
         SUBJECT      : String(200);
         TEXT         : LargeString;
