@@ -19,8 +19,7 @@ mbox.on('end', () => {
   console.info('\nDone parsing mbox');
   console.info(`${messages.length} emails in mbox file`);
 
-  const configFile = fs.readFileSync('hana.json');
-  const hanaConfig = JSON.parse(configFile);
-
-  hanaClient.load(hanaConfig, messages);
+  hanaClient.init(messages.length).then(() => {
+    hanaClient.loadRecurse(messages);
+  });
 });
