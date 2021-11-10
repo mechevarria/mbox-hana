@@ -2,4 +2,8 @@ entity ATTACHMENT {
     key ATTACHMENT_ID : Integer generated always as identity (start with 1 increment by 1);
         MESSAGE_ID    : String(200)      not null;
         FILENAME      : String(100);
+        CONTENT_TYPE  : String(100);
+        SIZE          : Integer;
+        CONTENT       : LargeString;
+        CID           : String(100);
 };

@@ -1,6 +1,6 @@
 const hdbext = require('@sap/hdbext');
-const fs = require('fs');
 const simpleParser = require('mailparser').simpleParser;
+const fs = require('fs');
 const cliProgress = require('cli-progress');
 
 const init = (count) => {
@@ -38,7 +38,7 @@ const loadRecurse = (messages) => {
 
     simpleParser(msg, {})
       .then((parsed) => {
-        const sql = `
+        const emailSql = `
             INSERT INTO "MBOX_SCHEMA"."EMAIL" (
               EMAIL_DATE,
               MESSAGE_ID,
@@ -55,7 +55,7 @@ const loadRecurse = (messages) => {
 
         const stringDate = `${parsed.date.getFullYear()}-${parsed.date.getMonth() + 1}-${parsed.date.getDate()}`;
 
-        const bindParams = [
+        let bindParams = [
           stringDate,
           parsed.messageId,
           parsed.from ? parsed.from.text : null,
@@ -66,10 +66,32 @@ const loadRecurse = (messages) => {
           parsed.text,
           parsed.textAsHtml,
         ];
-        this.hana.exec(sql, bindParams, (err, result) => {
+        this.hana.exec(emailSql, bindParams, (err, result) => {
           if (err) {
-            console.error('SQL error', err);
+            console.error('SQL Email error', err);
             throw err;
+          }
+          if (parsed.attachments.length > 0) {
+            parsed.attachments.forEach((attachment) => {
+              const attachSQL = `
+                  INSERT INTO "MBOX_SCHEMA"."ATTACHMENT" (
+                    MESSAGE_ID,
+                    FILENAME,
+                    CONTENT_TYPE,
+                    SIZE,
+                    CONTENT,
+                    CID
+                  )
+                  VALUES (?,?,?,?,?,?);
+                  `;
+              bindParams = [parsed.messageId, attachment.filename, attachment.contentType, attachment.size, attachment.content.toString(), attachment.cid];
+              this.hana.exec(attachSQL, bindParams, (err, result) => {
+                if (err) {
+                  console.error('SQL Attachment error', err);
+                  throw err;
+                }
+              });
+            });
           }
           this.bar1.increment();
           loadRecurse(messages);
