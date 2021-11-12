@@ -1,6 +1,6 @@
 {
   "name": "mbox-hana",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "mbox file parser to SAP HANA utility",
   "author": "Mike Echevarria <michael.echevarria@sapns2.com>",
   "repository": "https://bitbucket.ns2labs.com/users/i518948/repos/mbox-hana",
@@ -13,10 +13,10 @@
     "npm": "~6.14.0"
   },
   "dependencies": {
-    "@sap/hdbext": "^7.4.0",
     "cli-progress": "^3.9.1",
     "mailparser": "^3.4.0",
-    "node-mbox": "^1.0.0"
+    "node-mbox": "^1.0.0",
+    "sap-hdbext-promisfied": "^2.202110.1"
   },
   "devDependencies": {
     "eslint": "^8.0.1",

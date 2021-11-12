@@ -18,8 +18,9 @@ mbox.on('error', (err) => {
 mbox.on('end', () => {
   console.info('\nDone parsing mbox');
   console.info(`${messages.length} emails in mbox file`);
-
-  hanaClient.init(messages.length).then(() => {
-    hanaClient.loadRecurse(messages);
-  });
+  try {
+    hanaClient.load(messages);
+  } catch (error) {
+    console.error('Load error', error);
+  }
 });
