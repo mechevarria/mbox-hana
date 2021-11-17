@@ -4,7 +4,7 @@ const fs = require('fs');
 const cliProgress = require('cli-progress');
 
 const emailSql = `
-INSERT INTO "MBOX_SCHEMA"."EMAIL" (
+INSERT INTO "EMAIL" (
   EMAIL_DATE,
   MESSAGE_ID,
   FROM_ADDRESS,
@@ -19,7 +19,7 @@ VALUES (TO_DATE(?, 'YYYY-MM-DD'),?,?,?,?,?,?,?,?);
 `;
 
 const attachSQL = `
-INSERT INTO "MBOX_SCHEMA"."ATTACHMENT" (
+INSERT INTO "ATTACHMENT" (
   MESSAGE_ID,
   FILENAME,
   CONTENT_TYPE,

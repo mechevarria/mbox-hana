@@ -1,6 +1,6 @@
 {
   "name": "mbox-hana",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "mbox file parser to SAP HANA utility",
   "author": "Mike Echevarria <michael.echevarria@sapns2.com>",
   "repository": "git@github.com:openNS2/mbox-hana.git",
